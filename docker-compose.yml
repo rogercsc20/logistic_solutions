@@ -1,24 +1,32 @@
-version: "3.8"
+version: "3.9"
+
 services:
   app:
     build:
       context: .
     ports:
       - "5000:5000"
-    volumes:
-      - .:/app
     environment:
-      - FLASK_ENV=development
-      - DATABASE_URI=postgresql://bcl_user:bcl_password@db:5432/bcl_db
+      FLASK_ENV: development
+      SECRET_KEY: ${SECRET_KEY}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      DATABASE_URI: ${DATABASE_URI}
     depends_on:
       - db
     command: flask run --host=0.0.0.0
+    volumes:
+      - .:/app
 
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: bcl_user
-      POSTGRES_PASSWORD: bcl_password
-      POSTGRES_DB: bcl_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
