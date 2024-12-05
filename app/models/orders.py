@@ -1,7 +1,10 @@
 from datetime import timedelta
-from sqlalchemy import Enum
+from sqlalchemy import Enum, event
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import Session
 from app.extensions import db
+from app.models import Warehouse
+
 
 class Order(db.Model):
     __tablename__ = "orders"
@@ -22,6 +25,7 @@ class Order(db.Model):
         default="Pending",
         nullable=False,
     )
+
 
     # Foreign ket to warehouse
     warehouse_id = db.Column(db.Integer, db.ForeignKey("warehouses.id"), nullable=False)
@@ -52,4 +56,34 @@ class Order(db.Model):
         if self.delivery_date:
             return self.delivery_date + timedelta(days=15)
         return None
+
+#Automatically update inventory status
+def update_inventory_status_on_insert(mapper, connection, target):
+    """Update Inventory when an order is created with 'Delivered' status """
+    if target.delivery_status == "Delivered":
+        session = Session.object_session(target)
+        warehouse = session.query(Warehouse).get(target.warehouse_id)
+        if warehouse:
+            warehouse.inventory_status += target.bottles_ordered
+            session.add(warehouse)
+
+#Automatically update inventory status based on new orders delivered
+def update_inventory_status(mapper, connection, target):
+    """Update inventory status when order delivery status changes"""
+    session = Session.object_session(target)
+    warehouse = session.query(Warehouse).get(target.warehouse_id)
+
+    if not warehouse:
+        return
+
+    if target.delivery_status == "Delivered":
+        warehouse.inventory_status += target.bottles_ordered
+    elif target.delivery_status != "Delivered" and target.delivery_status in session.dirty:
+        warehouse.inventory_status -= target.bottles_ordered
+
+    session.add(warehouse)
+
+event.listen(Order, "after_insert", update_inventory_status_on_insert)
+event.listen(Order, "after_update", update_inventory_status)
+
 

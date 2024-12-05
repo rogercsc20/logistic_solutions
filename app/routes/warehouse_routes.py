@@ -3,6 +3,8 @@ from pyexpat.errors import messages
 from flask.views import MethodView
 from flask_jwt_extended import jwt_required
 from flask_smorest import Blueprint, abort
+
+from app.models import Client
 from app.models.warehouse import Warehouse
 from app.utils.auth_utils import role_required
 from schemas.warehouse_schema import WarehouseSchema, WarehouseUpdateSchema
@@ -27,6 +29,10 @@ class WarehouseList(MethodView):
         warehouse_duplicate = Warehouse.query.filter(Warehouse.address == warehouse_data["address"]).first()
         if warehouse_duplicate:
             abort(400, message="Warehouse with that location already exists")
+
+        client_id = warehouse_data.get("client_id")
+        if not Client.query.get(client_id):
+            abort(404, message="Client ID doesn't exist")
 
         warehouse = Warehouse(**warehouse_data)
         db.session.add(warehouse)

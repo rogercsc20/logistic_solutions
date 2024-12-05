@@ -4,10 +4,12 @@ from app.routes.client_routes import blp as ClientBlueprint
 from app.routes.orders_routes import blp as OrderBlueprint
 from app.routes.warehouse_routes import blp as WarehouseBlueprint
 from app.routes.user_routes import blp as UserBlueprint
+from logging_config import setup_logging
 
 
 def create_app():
     app = Flask(__name__)
+    setup_logging(app.logger)
     app.config.from_object("app.config.Config")
 
     #Initialize extensions
