@@ -3,7 +3,7 @@ from sqlalchemy import Enum, event
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Session
 from app.extensions import db
-from app.models import Warehouse
+from app.models.warehouse import Warehouse
 
 
 class Order(db.Model):
