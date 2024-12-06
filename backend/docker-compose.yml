@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: bcl_user
+      POSTGRES_PASSWORD: bcl_password
+      POSTGRES_DB: bcl_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: development
+      DATABASE_URI: postgresql://bcl_user:bcl_password@db:5432/bcl_db
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      -  ./logs:/app/logs
+    command: flask run --host=0.0.0.0
+
+volumes:
+  postgres_data:
