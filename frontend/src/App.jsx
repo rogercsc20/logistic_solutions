@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './styles/global.css';
 import NavBar from './components/NavBar';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const location = useLocation();
+
+    const showHomeButton = location.pathname === '/login' || location.pathname === '/signup';
 
     return (
         <div>
             {/* NavBar with isLoggedIn state */}
-            <NavBar isLoggedIn={isLoggedIn} />
+            <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} showHomeButton={showHomeButton} />
 
             {/* Routes */}
             <Routes>
@@ -38,7 +42,14 @@ const App = () => {
                 />
                 <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
                 <Route path="/signup" element={<SignupPage />} />
-                <Route path="/home" element={<HomePage />} />
+                <Route
+                    path="/home"
+                    element={
+                        <ProtectedRoute>
+                            <HomePage />
+                        </ProtectedRoute>
+                    }
+                />
             </Routes>
         </div>
     );

@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSignup = async (e) => {
         e.preventDefault();
         const payload = { username, email, password };
-        console.log('Payload:', payload);
+
         try {
-            const response = await axios.post('http://127.0.0.1:5000/register', payload);
-            setMessage('Registration successful! Please log in.');
-            console.log(response.data);
+            const response = await axiosInstance.post('/register', payload);
+
+            // Extract tokens from response
+            const { access_token, refresh_token } = response.data;
+
+            // Save tokens to localStorage
+            localStorage.setItem('access_token', access_token);
+            localStorage.setItem('refresh_token', refresh_token);
+
+            // Set success message and navigate to home
+            setMessage('Registration successful!');
+            navigate('/home');
         } catch (error) {
-            setMessage('Registration failed. Please try again.');
+            console.error('Error during registration:', error.response?.data || error.message);
+            setMessage(
+                error.response?.data?.message || 'Registration failed. Please try again.'
+            );
         }
     };
 
