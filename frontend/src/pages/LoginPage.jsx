@@ -10,6 +10,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setMessage(''); // Clear any previous message
 
         try {
             const response = await axiosInstance.post('/login', {
@@ -17,22 +18,25 @@ const LoginPage = ({ setIsLoggedIn }) => {
                 password,
             });
 
-            // Extract tokens from the response
-            const { access_token, refresh_token } = response.data;
+            const access_token = response.data["access token"];
+            const refresh_token = response.data["refresh token"];
+            console.log('Response data:', response.data);
 
-            // Store tokens in localStorage
-            localStorage.setItem('access_token', access_token);
-            localStorage.setItem('refresh_token', refresh_token);
 
-            // Set the logged-in state and navigate to home
-            setMessage('Login successful!');
-            setIsLoggedIn(true);
-            navigate('/home');
+            if (access_token && refresh_token) {
+                // Store tokens in localStorage
+                localStorage.setItem('access_token', access_token);
+                localStorage.setItem('refresh_token', refresh_token);
+
+                // Update login state and navigate
+                setIsLoggedIn(true);
+                navigate('/home');
+            } else {
+                throw new Error('Tokens not returned from the server.');
+            }
         } catch (error) {
             console.error('Login failed:', error.response?.data || error.message);
-            setMessage(
-                error.response?.data?.message || 'Login failed. Please check your credentials and try again.'
-            );
+            setMessage('Login failed. Please check your credentials.');
         }
     };
 
@@ -60,7 +64,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
                 </label>
                 <button type="submit" className="btn btn-primary">Log In</button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <p className="error-message">{message}</p>}
         </div>
     );
 };

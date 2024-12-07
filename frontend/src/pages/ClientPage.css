@@ -1,0 +1,62 @@
+/* Container styling */
+.client-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+    color: #f5f5f5; /* Softer white for readability */
+    font-family: 'Playfair Display', serif; /* Classy serif font */
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+/* Grid styling */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 30px; /* More spacing for elegance */
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Individual grid items */
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Button styling */
+.client-btn {
+    width: 100%;
+    max-width: 350px; /* Wider buttons for emphasis */
+    padding: 20px; /* Larger padding for better usability */
+    font-size: 1.5rem; /* Bigger font for readability */
+    font-weight: bold;
+    color: #fff; /* White text for contrast */
+    background-color: #2c3e50; /* Classy dark navy */
+    border: 2px solid #34495e; /* Subtle border */
+    border-radius: 10px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Elegant shadow for depth */
+}
+
+.client-btn:hover {
+    background-color: #34495e; /* Slightly lighter on hover */
+    color: #ecf0f1; /* Softer white for hover */
+    transform: scale(1.05); /* Subtle zoom effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.client-btn:active {
+    transform: scale(1); /* Reset scale */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow on click */
+}

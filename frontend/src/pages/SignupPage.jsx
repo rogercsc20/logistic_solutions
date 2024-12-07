@@ -11,26 +11,28 @@ const SignupPage = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        const payload = { username, email, password };
+        setMessage('');
 
         try {
-            const response = await axiosInstance.post('/register', payload);
+            const response = await axiosInstance.post('/register', {
+                username,
+                email,
+                password,
+            });
 
-            // Extract tokens from response
             const { access_token, refresh_token } = response.data;
 
-            // Save tokens to localStorage
-            localStorage.setItem('access_token', access_token);
-            localStorage.setItem('refresh_token', refresh_token);
-
-            // Set success message and navigate to home
-            setMessage('Registration successful!');
-            navigate('/home');
+            if (access_token && refresh_token) {
+                // Save tokens and navigate
+                localStorage.setItem('access_token', access_token);
+                localStorage.setItem('refresh_token', refresh_token);
+                navigate('/home');
+            } else {
+                throw new Error('Tokens not returned from the server.');
+            }
         } catch (error) {
-            console.error('Error during registration:', error.response?.data || error.message);
-            setMessage(
-                error.response?.data?.message || 'Registration failed. Please try again.'
-            );
+            console.error('Signup failed:', error.response?.data || error.message);
+            setMessage('Registration failed. Please try again.');
         }
     };
 
@@ -67,7 +69,7 @@ const SignupPage = () => {
                 </label>
                 <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
-            {message && <p>{message}</p>}
+            {message && <p className="error-message">{message}</p>}
         </div>
     );
 };
