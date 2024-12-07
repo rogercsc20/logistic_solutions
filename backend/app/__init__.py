@@ -14,7 +14,7 @@ def create_app():
 
     app.config.from_object("app.config.Config")
 
-    CORS(app, resources={r"/*": {"origins": "http://localhost:5174"}})
+    CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
     setup_logging(app.logger)
 

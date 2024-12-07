@@ -61,7 +61,7 @@ class LoginUser(MethodView):
         )
         refresh_token = create_refresh_token(
             identity=str(user.id),
-            expires_delta=timedelta(days=7)
+            expires_delta=timedelta(days=2)
         )
         app.logger.info(f"User '{login_data['username']}' logged in successfully.")
         return {"access token" : access_token, "refresh token" : refresh_token}, 200
