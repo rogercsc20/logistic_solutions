@@ -20,7 +20,7 @@ class ClientList(MethodView):
     def get(self):
         """List all clients"""
         try:
-            clients = Client.query.all()
+            clients = Client.query.order_by(Client.id.asc()).all()
             app.logger.info("Fetched all clients")
             return clients
         except Exception as e:

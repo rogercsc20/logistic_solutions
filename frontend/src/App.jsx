@@ -5,23 +5,24 @@ import NavBar from './components/NavBar';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
-import ClientPage from './pages/ClientPage';
+import ClientPage from './pages/Client/ClientPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import ClientInfoPage from './pages/ClientInfoPage';
-import CreateClientPage from './pages/CreateClientPage';
-import UpdateClientPage from './pages/UpdateClientPage';
-import DeleteClientPage from './pages/DeleteClientPage';
-import WarehousePage from './pages/WarehousePage';
-import WarehouseInfoPage from './pages/WarehouseInfoPage';
-import AddWarehousePage from './pages/AddWarehousePage';
-import UpdateWarehousePage from './pages/UpdateWarehousePage';
-import DeleteWarehousePage from './pages/DeleteWarehousePage';
-import OrdersPage from './pages/OrdersPage';
-import OrdersInfoPage from './pages/OrdersInfoPage';
-import CreateOrderPage from './pages/CreateOrderPage';
-import UpdateOrderPage from './pages/UpdateOrderPage';
-import DeleteOrderPage from './pages/DeleteOrderPage';
-import { isTokenExpired } from './utils/tokenUtils'; // Utility for token validation
+import ClientInfoPage from './pages/Client/ClientInfoPage';
+import CreateClientPage from './pages/Client/CreateClientPage';
+import UpdateClientPage from './pages/Client/UpdateClientPage';
+import DeleteClientPage from './pages/Client/DeleteClientPage';
+import WarehousePage from './pages/Warehouse/WarehousePage';
+import WarehouseInfoPage from './pages/Warehouse/WarehouseInfoPage';
+import AddWarehousePage from './pages/Warehouse/AddWarehousePage';
+import UpdateWarehousePage from './pages/Warehouse/UpdateWarehousePage';
+import DeleteWarehousePage from './pages/Warehouse/DeleteWarehousePage';
+import OrdersPage from './pages/Order/OrdersPage';
+import OrdersInfoPage from './pages/Order/OrdersInfoPage';
+import CreateOrderPage from './pages/Order/CreateOrderPage';
+import UpdateOrderPage from './pages/Order/UpdateOrderPage';
+import DeleteOrderPage from './pages/Order/DeleteOrderPage';
+import WarehousesInfoClientPage from './pages/Warehouse/WarehousesInfoClientPage';
+import { isTokenExpired } from './utils/tokenUtils'; //
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -87,6 +88,7 @@ const App = () => {
                 <Route path="/orders/create" element={<ProtectedRoute><CreateOrderPage /></ProtectedRoute>} />
                 <Route path="/orders/update" element={<ProtectedRoute><UpdateOrderPage /></ProtectedRoute>} />
                 <Route path="/orders/delete" element={<ProtectedRoute><DeleteOrderPage /></ProtectedRoute>} />
+                <Route path="/warehouses/info/:id" element={<WarehousesInfoClientPage />} />
 
                 <Route
                     path="/home"

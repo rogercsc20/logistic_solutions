@@ -12,6 +12,34 @@ from app import db
 
 blp = Blueprint("Warehouse", __name__, description="Operations on warehouses")
 
+
+@blp.route("/warehouses/info")
+class WarehouseInfo(MethodView):
+    @jwt_required()
+    @blp.response(200, WarehouseSchema(many=True))
+    def get(self):
+        """Fetch warehouses for a specific client."""
+        try:
+            # Get client_id from query parameters
+            client_id = request.args.get("client_id")
+            if not client_id:
+                app.logger.warning("Missing client_id in request.")
+                abort(400, message="client_id query parameter is required.")
+
+            # Fetch warehouses for the client
+            warehouses = Warehouse.query.filter(Warehouse.client_id == client_id).all()
+            if not warehouses:
+                app.logger.info(f"No warehouses found for client_id: {client_id}")
+                return []
+
+            app.logger.info(f"Fetched {len(warehouses)} warehouses for client_id: {client_id}")
+            return warehouses
+        except Exception as e:
+            app.logger.error(f"Error fetching warehouses for client_id {client_id}: {str(e)}")
+            abort(500, message="Internal server error")
+
+
+
 @blp.route("/warehouses")
 class WarehouseList(MethodView):
     @jwt_required()

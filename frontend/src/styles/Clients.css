@@ -1,0 +1,330 @@
+/* General styles for all client pages */
+.client-container {
+    padding-top: 160px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.client-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.search-bar-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar {
+    width: 94%;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #222;
+    color: #fff;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+}
+
+.message {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.success {
+    color: #28a745; /* Green */
+}
+
+.error {
+    color: #dc3545; /* Red */
+}
+
+.client-table-container {
+    margin-top: 20px;
+}
+
+.client-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    color: #fff;
+}
+
+.client-table th,
+.client-table td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #444;
+}
+
+.client-table th {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #333;
+    color: #fff;
+    text-align: left; /* Left-align headers */
+}
+
+.client-table td {
+    font-size: 1rem;
+    color: #e2e2e2;
+    text-align: left; /* Left-align text */
+}
+
+/* Center align buttons */
+.client-table td:last-child {
+    text-align: center;
+}
+
+.client-table tbody tr:nth-child(odd) {
+    background-color: #2b2b2b;
+}
+
+.client-table tbody tr:nth-child(even) {
+    background-color: #333;
+}
+
+.client-table input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #2b2b2b; /* Matches the table row background */
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.client-table input:focus {
+    border-color: #007bff; /* Focus effect matches the theme */
+}
+
+.client-table button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-block; /* Ensures consistent alignment */
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+.save-btn {
+    background-color: #28a745; /* Green Save button */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #218838;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #b02a37;
+}
+
+/* Confirmation Popup */
+.confirmation-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    padding: 30px 40px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 10px;
+    color: #fff;
+    width: 90%;
+    max-width: 400px;
+    z-index: 1000;
+    border: 3px solid #fff; /* White margin around popup box */
+}
+
+.confirmation-popup p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-actions button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.confirm-delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.confirm-delete-btn:hover {
+    background-color: #b02a37;
+}
+
+.add-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #333;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23fff' d='M0 0l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+select:focus {
+    border-color: #007bff;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333; /* Matches the form's dark theme */
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+/* Delete Confirmation Popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #fff;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.popup-buttons .btn {
+    width: 45%;
+}
+
+.cancel-btn {
+    background-color: #555;
+    color: #fff;
+}
+
+.cancel-btn:hover {
+    background-color: #666;
+}
+
+.delete-btn {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #c9302c;
+}
+
+
+.orders-table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.orders-table {
+    min-width: 1500px; /* Adjust as needed for the new columns */
+    border-collapse: collapse;
+}
+
+.orders-table th, .orders-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.orders-table .total-row {
+    font-weight: bold;
+    background-color: #2a2a2a; /* Slightly darker background */
+    color: #f5f5f5; /* Maintain light font for readability */
+}
+
+/* Fixed header styling */
+.orders-table th {
+    position: sticky;
+    top: 0;
+    background-color: #1a1a1a;
+}
+
+/* Add hover effect for rows */
+.orders-table tbody tr:hover {
+    background-color: #333333;
+}

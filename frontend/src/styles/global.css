@@ -6,7 +6,7 @@
 }
 
 body {
-     font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif;
     margin: 0;
     padding: 0;
     padding-top: 70px; /* Space for the fixed navbar */
@@ -17,6 +17,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 
@@ -37,7 +44,10 @@ p {
 }
 
 .container {
-    padding: 4rem;
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding: 2rem;
     text-align: center;
     background: #262626;
     border-radius: 8px;
@@ -92,7 +102,7 @@ p {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
 }
 .form-container {
     max-width: 400px;

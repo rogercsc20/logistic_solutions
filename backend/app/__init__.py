@@ -31,4 +31,6 @@ def create_app():
     api.register_blueprint(WarehouseBlueprint)
     api.register_blueprint(UserBlueprint)
 
+    print(app.url_map)
+
     return app

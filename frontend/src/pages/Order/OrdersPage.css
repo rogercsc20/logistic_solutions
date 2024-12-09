@@ -1,5 +1,5 @@
 /* Container styling */
-.client-page-container {
+.orders-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,8 +7,7 @@
     margin: 20px;
     padding: 20px;
     color: #f5f5f5; /* Softer white for readability */
-    font-family: 'Playfair Display', serif; /* Classy serif font */
-    text-align: center;
+    font-family: 'Playfair Display', serif;-align: center;
 }
 
 h1 {
@@ -34,7 +33,7 @@ h1 {
 }
 
 /* Button styling */
-.client-btn {
+.orders-btn {
     width: 100%;
     max-width: 350px; /* Wider buttons for emphasis */
     padding: 20px; /* Larger padding for better usability */
@@ -49,14 +48,14 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Elegant shadow for depth */
 }
 
-.client-btn:hover {
+.orders-btn:hover {
     background-color: #34495e; /* Slightly lighter on hover */
     color: #ecf0f1; /* Softer white for hover */
     transform: scale(1.05); /* Subtle zoom effect */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
 }
 
-.client-btn:active {
+.orders-btn:active {
     transform: scale(1); /* Reset scale */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow on click */
 }
