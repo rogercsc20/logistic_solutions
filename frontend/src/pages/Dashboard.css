@@ -1,0 +1,129 @@
+/* General Dashboard Styles */
+.dashboard {
+    font-family: Arial, sans-serif;
+    background-color: #262626; /* Light grey background */
+    padding: 180px 120px; /* Extra padding at the top to avoid overlap */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white; /* White text for all content */
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #303030; /* Slightly darker grey for the header */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: white; /* White text for the header */
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.filters label {
+    font-size: 1rem;
+    color: white; /* White text for labels */
+}
+
+.filters input[type="date"] {
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: black; /* Black text inside input */
+    outline: none;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.filters input[type="date"]:focus {
+    border: 2px solid #007bff; /* Blue border on focus */
+}
+
+.filters input[type="date"]:hover {
+    cursor: pointer;
+}
+
+.filters button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.filters button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.02); /* Slight zoom effect */
+}
+
+/* Dashboard Content - Two Column Grid */
+.dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between boxes */
+    width: 90%; /* Spanning most of the page */
+    max-width: 1200px; /* Limit width on larger screens */
+    margin: 20px auto;
+}
+
+/* Dashboard Box */
+.dashboard-box {
+    background-color: #505050; /* Dark grey for dashboard boxes */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashboard-box:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+
+.dashboard-box h3 {
+    font-size: 1.5rem;
+    color: white; /* White text for box titles */
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc; /* Subtle underline */
+    padding-bottom: 5px;
+}
+
+.dashboard-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-box ul li,
+.dashboard-box p {
+    font-size: 1rem;
+    color: #f5f5f5; /* Lighter grey for content text */
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-content {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}

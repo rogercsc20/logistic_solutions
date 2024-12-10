@@ -34,7 +34,7 @@ const WarehousesInfoClientPage = () => {
 
     return (
         <div className="client-container">
-            <h1 className="client-title">Warehouses for Client ID {id}</h1>
+            <h1>Warehouses for Client ID {id}</h1>
             {message && <p className={`message ${messageType}`}>{message}</p>}
 
             <div className="client-table-container">
@@ -43,6 +43,7 @@ const WarehousesInfoClientPage = () => {
                         <tr>
                             <th>ID</th>
                             <th>Address</th>
+                            <th>Phone</th>
                             <th>Manager Name</th>
                             <th>Manager Email</th>
                             <th>Manager Phone</th>
@@ -56,6 +57,7 @@ const WarehousesInfoClientPage = () => {
                             <tr key={warehouse.id}>
                                 <td>{warehouse.id}</td>
                                 <td>{warehouse.address}</td>
+                                <td>{warehouse.phone}</td>
                                 <td>{warehouse.manager_name || 'N/A'}</td>
                                 <td>{warehouse.manager_email || 'N/A'}</td>
                                 <td>{warehouse.manager_phone || 'N/A'}</td>

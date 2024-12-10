@@ -131,3 +131,140 @@ class OrderDetail(MethodView):
             app.logger.error(f"Error deleting order ID {order_id}: {str(e)}")
             db.session.rollback()
             abort(500, message="Internal server error")
+
+@blp.route("/orders/summary")
+class OrderSummary(MethodView):
+    @jwt_required()
+    @blp.response(200, description="Summary of orders by status")
+    def get(self):
+        """Get summary of orders by status and date range"""
+        try:
+            start_date = request.args.get("start_date")
+            end_date = request.args.get("end_date")
+
+            query = Order.query
+            if start_date and end_date:
+                query = query.filter(Order.order_date.between(start_date, end_date))
+
+            total_orders = query.count()
+            pending = query.filter(Order.delivery_status == "Pending").count()
+            on_route = query.filter(Order.delivery_status == "On_route").count()
+            delivered = query.filter(Order.delivery_status == "Delivered").count()
+
+            return {
+                "total_orders": total_orders,
+                "statuses": {
+                    "pending": pending,
+                    "on_route": on_route,
+                    "delivered": delivered
+                }
+            }
+        except Exception as e:
+            app.logger.error(f"Error fetching orders summary: {str(e)}")
+            abort(500, message="Internal server error")
+
+
+
+@blp.route("/costs/summary")
+class CostsSummary(MethodView):
+    @jwt_required()
+    @blp.response(200, description="Summary of costs")
+    def get(self):
+        """Get summary of costs within a date range"""
+        try:
+            start_date = request.args.get("start_date")
+            end_date = request.args.get("end_date")
+
+            query = Order.query
+            if start_date and end_date:
+                query = query.filter(Order.order_date.between(start_date, end_date))
+
+            freight_costs = sum(order.freight_cost for order in query)
+            maneuver_costs = sum(order.maneuver_cost for order in query)
+            discounts = sum(order.discount for order in query)
+            total_costs = freight_costs + maneuver_costs - discounts
+
+            return {
+                "total_costs": total_costs,
+                "freight_costs": freight_costs,
+                "maneuver_costs": maneuver_costs,
+                "discounts": discounts
+            }
+        except Exception as e:
+            app.logger.error(f"Error fetching costs summary: {str(e)}")
+            abort(500, message="Internal server error")
+
+
+
+@blp.route("/profits/summary")
+class ProfitSummary(MethodView):
+    @jwt_required()
+    @blp.response(200, description="Summary of profits")
+    def get(self):
+        """Get summary of profits within a date range"""
+        try:
+            start_date = request.args.get("start_date")
+            end_date = request.args.get("end_date")
+
+            query = Order.query
+            if start_date and end_date:
+                query = query.filter(Order.order_date.between(start_date, end_date))
+
+            total_revenue = sum(order.total_price for order in query)
+            total_profits = sum(order.profit for order in query)
+
+            return {
+                "total_revenue": total_revenue,
+                "total_profits": total_profits
+            }
+        except Exception as e:
+            app.logger.error(f"Error fetching profit summary: {str(e)}")
+            abort(500, message="Internal server error")
+
+
+@blp.route("/inventory/summary")
+class InventorySummary(MethodView):
+    @jwt_required()
+    @blp.response(200, description="Summary of inventory levels")
+    def get(self):
+        """Get summary of inventory levels by warehouse"""
+        try:
+            warehouses = Warehouse.query.all()
+            inventory_summary = [
+                {
+                    "warehouse_id": warehouse.id,
+                    "address": warehouse.address,
+                    "inventory_status": warehouse.inventory_status
+                }
+                for warehouse in warehouses
+            ]
+
+            return inventory_summary
+        except Exception as e:
+            app.logger.error(f"Error fetching inventory summary: {str(e)}")
+            abort(500, message="Internal server error")
+
+@blp.route("/sales/performance")
+class SalesPerformance(MethodView):
+    @jwt_required()
+    @blp.response(200, description="Sales performance data")
+    def get(self):
+        """Get sales performance data by time range"""
+        try:
+            start_date = request.args.get("start_date")
+            end_date = request.args.get("end_date")
+
+            query = Order.query
+            if start_date and end_date:
+                query = query.filter(Order.order_date.between(start_date, end_date))
+
+            bottles_sold = sum(order.bottles_ordered for order in query)
+            boxes_sold = sum(order.boxes_ordered for order in query)
+
+            return {
+                "bottles_sold": bottles_sold,
+                "boxes_sold": boxes_sold
+            }
+        except Exception as e:
+            app.logger.error(f"Error fetching sales performance: {str(e)}")
+            abort(500, message="Internal server error")

@@ -101,7 +101,7 @@ const handleSubmit = async (e) => {
 
     return (
         <div className="client-container">
-            <h1 className="client-title">Place Order</h1>
+            <h1>Place Order</h1>
             {message && <p className={`message ${messageType}`}>{message}</p>}
             <form className="form-container" onSubmit={handleSubmit}>
                 {/* Order Date */}

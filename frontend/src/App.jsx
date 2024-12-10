@@ -22,6 +22,7 @@ import CreateOrderPage from './pages/Order/CreateOrderPage';
 import UpdateOrderPage from './pages/Order/UpdateOrderPage';
 import DeleteOrderPage from './pages/Order/DeleteOrderPage';
 import WarehousesInfoClientPage from './pages/Warehouse/WarehousesInfoClientPage';
+import Dashboard from './pages/Dashboard';
 import { isTokenExpired } from './utils/tokenUtils'; //
 
 const App = () => {
@@ -89,6 +90,7 @@ const App = () => {
                 <Route path="/orders/update" element={<ProtectedRoute><UpdateOrderPage /></ProtectedRoute>} />
                 <Route path="/orders/delete" element={<ProtectedRoute><DeleteOrderPage /></ProtectedRoute>} />
                 <Route path="/warehouses/info/:id" element={<WarehousesInfoClientPage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
 
                 <Route
                     path="/home"

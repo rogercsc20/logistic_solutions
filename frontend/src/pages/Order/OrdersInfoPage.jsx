@@ -63,8 +63,8 @@ const OrdersInfoPage = () => {
     });
 
     return (
-        <div className="delete-order-container">
-            <h1 className="client-title">Orders Info</h1>
+        <div className="main-content">
+            <h1>Orders Info</h1>
             <input
                 type="text"
                 placeholder="Search by Order ID or Warehouse ID..."
@@ -72,7 +72,7 @@ const OrdersInfoPage = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="search-bar"
             />
-            <div className="client-container">
+            <div className="client-table-container">
                 <table className="client-table">
                     <thead>
                         <tr>
@@ -131,11 +131,11 @@ const OrdersInfoPage = () => {
                             <td colSpan="3">TOTAL</td>
                             <td>{numberFormatter.format(totals.bottles_ordered)}</td>
                             <td>{numberFormatter.format(totals.boxes_ordered)}</td>
-                            <td colSpan="3"></td>
+                            <td colSpan="2"></td>
                             <td>${numberFormatter.format(totals.freight_cost)}</td>
                             <td>${numberFormatter.format(totals.maneuver_cost)}</td>
                             <td>${numberFormatter.format(totals.discount)}</td>
-                            <td></td>
+                            <td colSpan="2"></td>
                             <td>${numberFormatter.format(totals.total_price)}</td>
                             <td>${numberFormatter.format(totals.profit)}</td>
                             <td colSpan="2"></td>

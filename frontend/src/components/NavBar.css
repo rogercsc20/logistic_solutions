@@ -68,3 +68,7 @@
 .btn-home:hover {
     background-color: #0056b3;
 }
+.main-content {
+     margin-top: 110px;
+    padding: 1rem;
+}
