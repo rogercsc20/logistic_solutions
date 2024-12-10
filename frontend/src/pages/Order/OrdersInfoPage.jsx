@@ -7,6 +7,8 @@ const OrdersInfoPage = () => {
     const [message, setMessage] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
 
+    const numberFormatter = new Intl.NumberFormat("en-US");
+
     // Fetch orders
     useEffect(() => {
         const fetchOrders = async () => {
@@ -61,17 +63,17 @@ const OrdersInfoPage = () => {
     });
 
     return (
-        <div className="client-container">
-            <h1 className="orders-title">Orders Info</h1>
+        <div className="delete-order-container">
+            <h1 className="client-title">Orders Info</h1>
             <input
                 type="text"
                 placeholder="Search by Order ID or Warehouse ID..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="orders-search-bar"
+                className="search-bar"
             />
-            <div className="orders-table-container">
-                <table className="orders-table">
+            <div className="client-container">
+                <table className="client-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -100,8 +102,8 @@ const OrdersInfoPage = () => {
                                 <td className={`status-${order.delivery_status.toLowerCase()}`}>
                                     {order.delivery_status}
                                 </td>
-                                <td>{order.bottles_ordered}</td>
-                                <td>{order.boxes_ordered.toFixed(2)}</td>
+                                <td>{numberFormatter.format(order.bottles_ordered)}</td>
+                                <td>{numberFormatter.format(order.boxes_ordered)}</td>
                                 <td>
                                     {order.delivery_date
                                         ? new Date(order.delivery_date).toLocaleDateString()
@@ -112,13 +114,13 @@ const OrdersInfoPage = () => {
                                         ? new Date(order.schedule_payment_date).toLocaleDateString()
                                         : "N/A"}
                                 </td>
-                                <td>${order.freight_cost.toFixed(2)}</td>
-                                <td>${order.maneuver_cost.toFixed(2)}</td>
-                                <td>${order.discount.toFixed(2)}</td>
-                                <td>${order.bottle_cost.toFixed(2)}</td>
-                                <td>${order.price_per_bottle.toFixed(2)}</td>
-                                <td>${order.total_price.toFixed(2)}</td>
-                                <td>${order.profit.toFixed(2)}</td>
+                                <td>${numberFormatter.format(order.freight_cost)}</td>
+                                <td>${numberFormatter.format(order.maneuver_cost)}</td>
+                                <td>${numberFormatter.format(order.discount)}</td>
+                                <td>${numberFormatter.format(order.bottle_cost)}</td>
+                                <td>${numberFormatter.format(order.price_per_bottle)}</td>
+                                <td>${numberFormatter.format(order.total_price)}</td>
+                                <td>${numberFormatter.format(order.profit)}</td>
                                 <td className={`status-${order.payment_status.toLowerCase()}`}>
                                     {order.payment_status}
                                 </td>
@@ -127,15 +129,15 @@ const OrdersInfoPage = () => {
                         ))}
                         <tr className="total-row">
                             <td colSpan="3">TOTAL</td>
-                            <td>{totals.bottles_ordered}</td>
-                            <td>{totals.boxes_ordered.toFixed(2)}</td>
+                            <td>{numberFormatter.format(totals.bottles_ordered)}</td>
+                            <td>{numberFormatter.format(totals.boxes_ordered)}</td>
                             <td colSpan="3"></td>
-                            <td>${totals.freight_cost.toFixed(2)}</td>
-                            <td>${totals.maneuver_cost.toFixed(2)}</td>
-                            <td>${totals.discount.toFixed(2)}</td>
+                            <td>${numberFormatter.format(totals.freight_cost)}</td>
+                            <td>${numberFormatter.format(totals.maneuver_cost)}</td>
+                            <td>${numberFormatter.format(totals.discount)}</td>
                             <td></td>
-                            <td>${totals.total_price.toFixed(2)}</td>
-                            <td>${totals.profit.toFixed(2)}</td>
+                            <td>${numberFormatter.format(totals.total_price)}</td>
+                            <td>${numberFormatter.format(totals.profit)}</td>
                             <td colSpan="2"></td>
                         </tr>
                     </tbody>

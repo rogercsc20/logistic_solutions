@@ -80,7 +80,7 @@ const AddWarehousePage = () => {
 
     return (
         <div className="client-container">
-            <h1 className="client-title">Create Warehouse</h1>
+            <h1>Create Warehouse</h1>
             {message && <p className={`message ${messageType}`}>{message}</p>}
             <form onSubmit={handleSubmit} className="form-container">
                 <label>

@@ -4,11 +4,7 @@ import '../../styles/Clients.css'; // Reusing the same styles for consistency
 
 const UpdateWarehousePage = () => {
     const [warehouses, setWarehouses] = useState([]);
-    const [filters, setFilters] = useState({
-        client_id: '',
-        manager_name: '',
-        location: '',
-        search: '',
+    const [filters, setFilters] = useState({search: '',
     });
     const [editingWarehouseId, setEditingWarehouseId] = useState(null);
     const [editedWarehouse, setEditedWarehouse] = useState({});
@@ -100,7 +96,7 @@ const UpdateWarehousePage = () => {
 
     return (
         <div className="client-container">
-            <h1 className="client-title">Update Warehouses</h1>
+            <h1>Update Warehouses</h1>
             {message && <p className={`message ${messageType}`}>{message}</p>}
 
             {/* Filter inputs */}
@@ -110,30 +106,6 @@ const UpdateWarehousePage = () => {
                     name="search"
                     placeholder="Search..."
                     value={filters.search}
-                    onChange={handleFilterChange}
-                    className="search-bar"
-                />
-                <input
-                    type="text"
-                    name="manager_name"
-                    placeholder="Filter by manager name..."
-                    value={filters.manager_name}
-                    onChange={handleFilterChange}
-                    className="search-bar"
-                />
-                <input
-                    type="text"
-                    name="location"
-                    placeholder="Filter by location..."
-                    value={filters.location}
-                    onChange={handleFilterChange}
-                    className="search-bar"
-                />
-                <input
-                    type="text"
-                    name="client_id"
-                    placeholder="Filter by client ID..."
-                    value={filters.client_id}
                     onChange={handleFilterChange}
                     className="search-bar"
                 />

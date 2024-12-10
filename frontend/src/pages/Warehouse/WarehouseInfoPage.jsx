@@ -46,8 +46,8 @@ const WarehousesInfoPage = () => {
     };
 
     return (
-        <div className="client-container">
-            <h1 className="client-title">Warehouses Info</h1>
+        <div className="client-info-container">
+            <h1>Warehouses Info</h1>
             <div className="search-bar-container">
                 <input
                     type="text"

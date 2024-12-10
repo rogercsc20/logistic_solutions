@@ -64,7 +64,7 @@ const DeleteWarehousePage = () => {
 
     return (
         <div className="client-container">
-            <h1 className="client-title">Delete Warehouses</h1>
+            <h1>Delete Warehouses</h1>
             {message && <p className={`message ${messageType}`}>{message}</p>}
 
             {/* Warehouses Table */}

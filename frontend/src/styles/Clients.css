@@ -1,8 +1,8 @@
 /* General styles for all client pages */
 .client-container {
     padding-top: 160px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
     color: #fff;
     font-family: 'Arial', sans-serif;
 }
@@ -11,6 +11,16 @@
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 20px;
+    padding-left: 280px;
+    color: #ffffff;
+}
+
+.delete-order-container{
+  font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
     color: #ffffff;
 }
 
@@ -80,7 +90,7 @@
     text-align: left; /* Left-align text */
 }
 
-/* Center align buttons */
+
 .client-table td:last-child {
     text-align: center;
 }
@@ -118,6 +128,17 @@
     display: inline-block; /* Ensures consistent alignment */
 }
 
+.client-table .total-row {
+    font-weight: bold;
+    background-color: #2a2a2a;
+    color: #f5f5f5;
+}
+
+.client-table tbody tr:hover {
+    background-color: #555555;
+}
+
+
 .edit-btn {
     background-color: #007bff;
     color: #fff;
@@ -148,7 +169,7 @@
     background-color: #b02a37;
 }
 
-/* Confirmation Popup */
+
 .confirmation-popup {
     position: fixed;
     top: 50%;
@@ -163,7 +184,7 @@
     width: 90%;
     max-width: 400px;
     z-index: 1000;
-    border: 3px solid #fff; /* White margin around popup box */
+    border: 3px solid #fff;
 }
 
 .confirmation-popup p {
@@ -238,7 +259,7 @@ select {
     border-radius: 5px;
     font-size: 1rem;
     color: #fff;
-    background-color: #333; /* Matches the form's dark theme */
+    background-color: #333;
     outline: none;
     transition: border-color 0.3s ease;
 }
@@ -293,38 +314,4 @@ select {
 
 .delete-btn:hover {
     background-color: #c9302c;
-}
-
-
-.orders-table-container {
-    overflow-x: auto;
-    margin-top: 20px;
-}
-
-.orders-table {
-    min-width: 1500px; /* Adjust as needed for the new columns */
-    border-collapse: collapse;
-}
-
-.orders-table th, .orders-table td {
-    padding: 12px;
-    text-align: center;
-}
-
-.orders-table .total-row {
-    font-weight: bold;
-    background-color: #2a2a2a; /* Slightly darker background */
-    color: #f5f5f5; /* Maintain light font for readability */
-}
-
-/* Fixed header styling */
-.orders-table th {
-    position: sticky;
-    top: 0;
-    background-color: #1a1a1a;
-}
-
-/* Add hover effect for rows */
-.orders-table tbody tr:hover {
-    background-color: #333333;
 }
