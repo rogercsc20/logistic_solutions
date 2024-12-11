@@ -6,6 +6,7 @@ from app.routes.orders_routes import blp as OrderBlueprint
 from app.routes.warehouse_routes import blp as WarehouseBlueprint
 from app.routes.user_routes import blp as UserBlueprint
 from logging_config import setup_logging
+import os
 
 
 
@@ -13,8 +14,8 @@ def create_app():
     app = Flask(__name__)
 
     app.config.from_object("app.config.Config")
-
-    CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+    origins = os.getenv("CORS_ORIGINS", "http://localhost:5173")
+    CORS(app, resources={r"/*": {"origins": origins}})
 
     setup_logging(app.logger)
 
@@ -30,7 +31,5 @@ def create_app():
     api.register_blueprint(OrderBlueprint)
     api.register_blueprint(WarehouseBlueprint)
     api.register_blueprint(UserBlueprint)
-
-    print(app.url_map)
 
     return app

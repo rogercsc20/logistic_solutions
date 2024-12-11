@@ -11,3 +11,4 @@ flask-smorest
 Werkzeug
 pytest
 flask-cors
+gunicorn
